@@ -24,7 +24,7 @@ jobs:
           flutter gen-l10n
 
       - name: Install Widgetbook CLI
-        run: dart pub global activate -sgit https://github.com/widgetbook/widgetbook.git --git-path packages/widgetbook_cli --git-ref feat/cli/cloud-cmds
+        run: dart pub global activate widgetbook_cli
 
       - name: Build Widgetbook
         working-directory: widgetbook
@@ -33,6 +33,13 @@ jobs:
           dart run build_runner build -d
           flutter build web -t lib/main.dart
 
-      - name: Sync Widgetbook Review
+      - name: Upload Widgetbook
         working-directory: widgetbook
-        run: widgetbook_staging cloud review sync --api-key ${{ secrets.WIDGETBOOK_CLOUD_API_KEY_STAGING }} --base-branch $GITHUB_BASE_REF --base-sha ${{ github.event.pull_request.base.sha }} --head-branch $GITHUB_HEAD_REF --head-sha ${{ github.event.pull_request.head.sha }}
+        run: |
+          widgetbook_staging publish \
+            --api-key ${{ secrets.WIDGETBOOK_CLOUD_API_KEY_STAGING }} \
+            --repository $GITHUB_REPOSITORY \
+            --actor $GITHUB_ACTOR \
+            --base-branch $GITHUB_BASE_REF \
+            --branch $GITHUB_HEAD_REF \
+            --commit ${{ github.event.pull_request.head.sha }}
