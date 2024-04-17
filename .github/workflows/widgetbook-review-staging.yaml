@@ -36,5 +36,4 @@ jobs:
       - name: Upload Widgetbook
         working-directory: widgetbook
         run: |
-          widgetbook_staging cloud review sync \
-            --api-key ${{ secrets.WIDGETBOOK_CLOUD_API_KEY_STAGING }} --base-branch $GITHUB_BASE_REF --base-sha ${{ github.event.pull_request.base.sha }} --head-branch $GITHUB_HEAD_REF --head-sha ${{ github.event.pull_request.head.sha }}
+          widgetbook_staging cloud review sync --api-key ${{ secrets.WIDGETBOOK_CLOUD_API_KEY_STAGING }} --base-branch $GITHUB_BASE_REF --base-sha ${{ github.event.pull_request.base.sha }} --head-branch $GITHUB_HEAD_REF --head-sha ${{ github.event.pull_request.head.sha }}
