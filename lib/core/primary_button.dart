@@ -28,7 +28,7 @@ class PrimaryButton extends StatelessWidget {
           Text(
             content,
             style: AppTheme.of(context).typography.labelMedium14.copyWith(
-                  color: Colors.amber,
+                  color: Colors.blue,
                 ),
           ),
           SizedBox(
