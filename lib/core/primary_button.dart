@@ -18,13 +18,22 @@ class PrimaryButton extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: AppTheme.of(context).surface.brand,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black54,
-            blurRadius: 4,
-            offset: Offset(4, 8), // Shadow position
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            stops: [
+              0.2,
+              0.4,
+              0.6,
+              0.9,
+            ],
+            colors: [
+              AppTheme.of(context).surface.brand,
+              Colors.redAccent,
+              Colors.indigoAccent,
+              Colors.black12,
+            ],
           ),
-        ],
         borderRadius: BorderRadius.circular(
           AppTheme.of(context).radius.full,
         ),
@@ -35,7 +44,7 @@ class PrimaryButton extends StatelessWidget {
           Text(
             content,
             style: AppTheme.of(context).typography.labelMedium14.copyWith(
-                  color: Colors.white,
+              color: AppTheme.of(context).surface.brand,
                 ),
           ),
           SizedBox(
