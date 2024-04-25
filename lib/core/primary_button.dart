@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 
@@ -20,6 +18,13 @@ class PrimaryButton extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: AppTheme.of(context).surface.brand,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black54,
+            blurRadius: 4,
+            offset: Offset(4, 8), // Shadow position
+          ),
+        ],
         borderRadius: BorderRadius.circular(
           AppTheme.of(context).radius.full,
         ),
@@ -27,14 +32,12 @@ class PrimaryButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-      ImageFiltered(
-      imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-      child:Text(
+          Text(
             content,
             style: AppTheme.of(context).typography.labelMedium14.copyWith(
                   color: Colors.white,
                 ),
-          )),
+          ),
           SizedBox(
             width: AppTheme.of(context).spacing.small,
           ),
